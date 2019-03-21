@@ -508,7 +508,7 @@ john6.calculateAge()*/
 
 // Lecture: Inheritance between classes using sub classes
 
-var Person5 = function(name, yearOfBirth, job){
+/*var Person5 = function(name, yearOfBirth, job){
     this.name = name;
     this.yearOfBirth = yearOfBirth;
     this.job = job;
@@ -572,41 +572,112 @@ class Athlete6 extends Person6 {
 const johnAthlete = new Athlete6('John', 1990, 'Swimmer', 3, 10);
 
 johnAthlete.wonMedal();
-johnAthlete.calculateAge();
+johnAthlete.calculateAge();*/
+
+
+// Coding challenge 8
+
+class Park {
+    constructor(name, buildYear, numberTrees, parkArea){
+        this.name = name;
+        this.buildYear = buildYear;
+        this.numberTrees = numberTrees;
+        this.parkArea = parkArea;
+    }
+
+    treeDensity(){
+        let treeDen = this.numberTrees / this.parkArea;
+        console.log(`${this.name} has a tree density of ${treeDen} per square km`); 
+    }
+
+    calculateAge(){
+        let age = new Date().getFullYear() - this.buildYear;
+        return age;
+    }
+
+    largeTrees(){
+        if(this.numberTrees >= 1000) {
+            console.log(`${this.name} has more than 1000 trees`);
+        }
+
+    }
+
+}
+
+class Street extends Park{
+    constructor(name, buildYear, realLength){
+        super(name, buildYear);
+        this.realLength = realLength;
+    }
+
+    sizeClass(){
+        let size;
+        if(this.realLength <= 200){
+            size = 'small';
+            console.log(`${this.name} built in ${this.buildYear} is a ${size} street`);
+        } else if(this.realLength > 200 && this.realLength < 500){
+            size = 'big';
+            console.log(`${this.name} built in ${this.buildYear} is a ${size} street`);
+        } else {
+            size = 'large';
+            console.log(`${this.name} built in ${this.buildYear} is a ${size} street`);
+        }
+    }
+
+}
+
+const park1 = new Park('Park1', 1990, 1000, 5);
+const park2 = new Park('Park2', 1997, 300, 54);
+const park3 = new Park('Park3', 1993, 200, 10);
+
+
+const street1 = new Street('Street1', 1998, 250);
+const street2 = new Street('Street2', 1897, 1150);
+const street3 = new Street('Street3', 2001, 150);
+const street4 = new Street('Street4', 2005, 350);
+
+
+
+console.log("/***Streets report***/");
+
+
+street1.sizeClass();
+street2.sizeClass();
+street3.sizeClass();
+street4.sizeClass();
+
+const totalAndAverage = (a, b, c, d) => {
+       let total = a.realLength + b.realLength + c.realLength + d.realLength;
+       let average = total / 4;
+        console.log(`Our four streets have a total length of ${total} and an average of ${average}. `);
+   
+    }
+
+    totalAndAverage(street1, street2, street3, street4);
 
 
 
 
+console.log("/***Park Reports***/");
+
+park1.treeDensity();
+park2.treeDensity();
+park3.treeDensity();
+
+park1.largeTrees();
+park2.largeTrees();
+park3.largeTrees();
 
 
 
+const [park1Age, park2Age, park3Age] = [park1.calculateAge(), park2.calculateAge(), park3.calculateAge()];
 
+const average = (age1, age2, age3, numPark) => {
+    const averageAge = (age1 + age2 + age3) / numPark;
+    console.log(`Our three parks have an average age of ${averageAge} years`);
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+average(park1Age, park2Age, park3Age, 3);
 
 
 
